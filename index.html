@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Spotlighting Task-Relevant Features: Object-Centric Representations for Better Generalization in Robotic Manipulation">
+  <meta name="keywords" content="Robotic Manipulation, Object-Centric Representations, Generalization, IROS 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spotlighting Task-Relevant Features</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+  
+  <style>
+    /* Gradient hero background for a polished look */
+    .hero-gradient {
+        background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    }
+    
+    /* Slight adjustment for citation links to make them readable */
+    .cite-link {
+        color: #3273dc;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .cite-link:hover {
+        text-decoration: underline;
+        color: #205ebb;
+    }
+    
+    /* Simple hover effect for gallery images */
+    .gallery-img {
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 100%;
+    }
+    .gallery-img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+
+    /* Improved table styling */
+    .table th {
+        background-color: #f5f5f5;
+        vertical-align: middle;
+    }
+    .table td {
+        vertical-align: middle;
+    }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<section class="hero hero-gradient">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Spotlighting Task-Relevant Features: Object-Centric Representations for Better Generalization in Robotic Manipulation</h1>
+          
+          <h2 class="subtitle is-3 has-text-weight-semibold" style="margin-top: -10px; margin-bottom: 30px; color: #4a4a4a;">
+            🎉 Accepted at IROS 2026 🤖
+          </h2>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://alexcbb.github.io/" target="_blank">Alexandre Chapin</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/bruno-machado-carneiro/" target="_blank">Bruno Machado</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=lK9Pa0MAAAAJ&hl=fr" target="_blank">Emmanuel Dellandrea</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=VOPW5YYAAAAJ&hl=fr" target="_blank">Liming Chen</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 10px; color: #666;">
+            <span class="author-block"><sup>1</sup>Ecole Centrale de Lyon, CNRS, Universite Claude Bernard Lyon 1, INSA Lyon, Université Lumière Lyon 2, LIRIS, UMR5205, 69130 Ecully, France</span>
+          </div>
+
+          <div class="column has-text-centered" style="margin-top: 20px;">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="static/pdfs/paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset (Coming soon)</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="teaser-container" style="text-align: center;">
+        <img src="./static/images/overview.png" alt="Visual representation overview showing Global, Dense, and Object-centric architectures" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+      </div>
+      <h2 class="subtitle has-text-centered is-size-5" style="margin-top: 20px; line-height: 1.6;">
+        Object-centric representations, unlike global or dense features, naturally separate task-relevant objects from irrelevant background noise, enabling robust generalization.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="box content has-text-justified" style="box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 2rem;">
+          <p>
+            Training robotic policies that reliably generalize to novel environments remains a persistent challenge. While state-of-the-art models leverage powerful global or dense visual features, these representations struggle to separate critical task-specific signals from background noise, causing failures under visual shifts. 
+          </p>
+          <p>
+            In this work, we investigate Slot-based Object-Centric Representations (SOCRs) [<a href="#ref-locatello" class="cite-link">1</a>] as a structural solution that decomposes scenes into discrete, actionable entities without supervision. Through a large-scale diagnostic study across simulated (METAWORLD [<a href="#ref-yu" class="cite-link">4</a>], LIBERO [<a href="#ref-liu" class="cite-link">5</a>]) and real-world tasks, we systematically evaluate SOCRs against dominant baselines. 
+          </p>
+          <p>
+            We find that structured abstraction drives inherent robustness: SOCRs drastically outperform standard models under severe lighting, texture, and clutter shifts without task-specific fine-tuning, and they scale effectively with in-domain video pre-training. However, we also identify a critical vulnerability: a structural capacity trade-off that leads to slot merging under high clutter. By mapping out both the strengths and the bottleneck limits of SOCRs, this work provides a clear roadmap for integrating structured visual abstractions into next-generation, generalizable robotic systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Video Overview</h2>
+        <div class="publication-video" style="margin-top: 20px;">
+          <video id="main-video" autoplay controls muted loop playsinline width="100%" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+            <source src="./static/videos/video_object-centric.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Methodology & Visual Focus Analysis</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our method extracts an object-centric representation from dense features using a Slot Attention mechanism [<a href="#ref-locatello" class="cite-link">1</a>]. Given an input image, it is first encoded by a DINOv2 visual backbone [<a href="#ref-oquab" class="cite-link">2</a>] into dense feature tokens. A Transformer layer handles temporal consistency before iteratively attending to features to extract a compact set of object representations (slots). We integrate this visual module, dubbed <strong>DINOSAUR*</strong> [<a href="#ref-seitzer" class="cite-link">3</a>], into a multi-task policy training framework to evaluate manipulation generalization.
+          </p>
+          
+          <div style="text-align: center; margin: 30px 0;">
+              <img src="./static/images/policy_model.png" alt="Policy Model Architecture" style="max-width: 85%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+             <p class="is-size-7" style="margin-top: 15px; color: #555;"><strong>Figure 2:</strong> Overview of our robotic manipulation policy architecture. The pre-trained visual model extracts features that are combined with text instructions and proprioception in the observation trunk before passing to the action head.</p>
+          </div>
+
+          <p>
+            To understand how these features aggregate information, we conducted a model focus analysis (Figure 1: Grad-CAM for CNNs, Attention-Rollout for ViTs). We found that while standard models tend to have broad or easily distracted focus areas, our slot-based representations split dense features into multiple slots that specialize in different objects. This explicitly separates task-relevant information (like the gripper and target object) from background noise.
+          </p>
+        </div>
+      </div>
+    </div>
+<div class="columns is-centered" style="margin-top: 30px;">
+      <div class="column is-full-width">
+        <h2 class="title is-4">The Impact of Robotic Pre-Training</h2>
+        <div class="content has-text-justified">
+          <p>
+            While object-centric models excel at structured scene decomposition, they are primarily trained on in-the-wild datasets (like COCO). To bridge the domain gap for robotic manipulation, we introduced a domain-specific pretraining stage. Our <strong>DINOSAUR-Rob*</strong> model is pre-trained on a diverse, large-scale mixture of real-world robotic datasets including <strong>BridgeV2</strong> [<a href="#ref-bridge" class="cite-link">7</a>], <strong>Fractal</strong> [<a href="#ref-fractal" class="cite-link">8</a>], and <strong>DROID</strong> [<a href="#ref-droid" class="cite-link">9</a>]. We found that this diverse data mixture significantly outperforms models trained on single-source robotic datasets or standard vision baselines, particularly in real-world scenarios.
+          </p>
+        </div>
+
+        <div class="table-container" style="margin-top: 20px;">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th class="has-text-centered">Pre-training data</th>
+                <th class="has-text-centered">MetaWorld</th>
+                <th class="has-text-centered">LIBERO</th>
+                <th class="has-text-centered">Real-Robot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>COCO (Standard Baseline)</td>
+                <td>0.73</td>
+                <td><span style="text-decoration: underline;">0.75</span></td>
+                <td><span style="text-decoration: underline;">0.48</span></td>
+              </tr>
+              <tr>
+                <td>BridgeV2 (B) [<a href="#ref-bridge" class="cite-link">7</a>]</td>
+                <td><span style="text-decoration: underline;">0.75</span></td>
+                <td>0.73</td>
+                <td>0.45</td>
+              </tr>
+              <tr>
+                <td>Fractal (F) [<a href="#ref-fractal" class="cite-link">8</a>]</td>
+                <td>0.72</td>
+                <td>0.58</td>
+                <td>0.38</td>
+              </tr>
+              <tr>
+                <td>DROID (D) [<a href="#ref-droid" class="cite-link">9</a>]</td>
+                <td>0.74</td>
+                <td>0.72</td>
+                <td>0.26</td>
+              </tr>
+              <tr style="background-color: #e8f4f8;">
+                <td><strong>DINOSAUR-Rob* (D+B+F)</strong></td>
+                <td><strong>0.76</strong></td>
+                <td><strong>0.77</strong></td>
+                <td><strong>0.56</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-7 has-text-centered" style="color: #555;"><strong>Table 3:</strong> Pre-training data evaluation. Final global performance for DINOSAUR*.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluated DINOSAUR* and DINOSAUR-Rob* against dominant global (VC-1, R3M), dense (DINOv2, Theia, ResNet-50), and segmentation-driven (SAM+DINOv2) baselines. Our evaluation spanned simulated environments (MetaWorld, LIBERO) and real-world Franka deployments.
+          </p>
+          <div style="text-align: center; margin: 30px 0;">
+              <img src="./static/images/real_tasks.png" alt="Overview of the real-world robotic setup using a Franka arm." style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+             <p class="is-size-7" style="margin-top: 15px; color: #555;"><strong>Figure 3:</strong> Overview of the real-world robotic setup using a Franka arm across four tabletop tasks: Stacking bowls, Screwdriver Drawer, Cans to bin, and Plates to stash.</p>
+          </div>
+          
+          <h3 class="title is-4" style="margin-top: 40px;">Generalization Under Visual Distribution Shifts</h3>
+          <p>
+            Object-centric models generalize substantially better than dense and global representations under realistic out-of-distribution (OOD) scenarios.
+          </p>
+
+          <div style="text-align: center; margin: 30px 0;">
+              <img src="./static/images/generalization_sim.png" alt="Diversity of generalization scenes in simulation" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
+            <div class="columns is-multiline is-centered" style="margin-top: 10px;">
+              <div class="column is-half">
+                <figure class="image">
+                  <img src="./static/images/gen_dist.gif" alt="Generalization Distractors" class="gallery-img">
+                </figure>
+              </div>
+              <div class="column is-half">
+                <figure class="image">
+                  <img src="./static/images/gen_text.gif" alt="Generalization Textures" class="gallery-img">
+                </figure>
+              </div>
+            </div>
+                  <p class="is-size-7" style="margin-top: 15px; color: #555;"><strong>Figure 4:</strong> Overview of generalization scenarios including novel distractors, unseen textures, and lighting changes applied to simulated environments (top) and real-world setups (bottom).</p>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th class="has-text-centered">Model</th>
+                <th class="has-text-centered">Distractors</th>
+                <th class="has-text-centered">Textures</th>
+                <th class="has-text-centered">Lighting</th>
+                <th class="has-text-centered">Overall OOD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ResNet-50</td><td>0.04</td><td>0.00</td><td>0.22</td><td>0.10</td>
+              </tr>
+              <tr>
+                <td>DINOv2</td><td>0.11</td><td>0.03</td><td>0.39</td><td>0.18</td>
+              </tr>
+              <tr>
+                <td>Theia</td><td><strong>0.65</strong></td><td>0.28</td><td>0.48</td><td>0.47</td>
+              </tr>
+              <tr style="background-color: #e8f4f8;">
+                <td><strong>DINOSAUR* (Ours)</strong></td><td>0.21</td><td><strong>0.48</strong></td><td><strong>0.71</strong></td><td>0.46</td>
+              </tr>
+              <tr style="background-color: #e8f4f8;">
+                <td><strong>DINOSAUR-Rob* (Ours)</strong></td><td>0.46</td><td>0.36</td><td>0.65</td><td><strong>0.49</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-7 has-text-centered" style="color: #555;"><strong>Table 1:</strong> Out-of-Distribution Success Rates in MetaWorld.</p>
+        </div>
+
+        <div class="table-container" style="margin-top: 30px;">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th class="has-text-centered">Model</th>
+                <th class="has-text-centered">Distractors</th>
+                <th class="has-text-centered">Textures</th>
+                <th class="has-text-centered">Overall OOD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ResNet-50</td><td>0.15</td><td>0.10</td><td>0.12</td>
+              </tr>
+              <tr>
+                <td>DINOv2 / Theia</td><td>0.06</td><td>0.08</td><td>0.07</td>
+              </tr>
+              <tr style="background-color: #e8f4f8;">
+                <td><strong>DINOSAUR* (Ours)</strong></td><td>0.27</td><td>0.29</td><td>0.28</td>
+              </tr>
+              <tr style="background-color: #e8f4f8;">
+                <td><strong>DINOSAUR-Rob* (Ours)</strong></td><td><strong>0.37</strong></td><td><strong>0.44</strong></td><td><strong>0.41</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-7 has-text-centered" style="color: #555;"><strong>Table 2:</strong> Out-of-Distribution Success Rates on the Real Robot.</p>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 50px;">Failure Modes & The Capacity Trade-off</h3>
+        <div class="content has-text-justified">
+          <p>
+            Through qualitative analysis, we identified <strong>slot merging</strong> as the primary bottleneck for object-centric policies. When objects outnumber the available slots (K), features from novel distractors leak into task-relevant slots, polluting the state representation.
+          </p>
+          <ul>
+            <li><strong>Under-segmentation (K &lt; 10):</strong> Reducing slot capacity forces harmful merging, dropping OOD success rates dramatically (down to 34% at K=4).</li>
+            <li><strong>Increased Capacity (K &gt; 10):</strong> Increasing the slot budget (e.g., K=20) allows the encoder to isolate novel distractors, improving OOD robustness up to 60%. However, this introduces a trade-off: flooding the policy with a noisier, higher-dimensional state space degrades In-Domain performance.</li>
+          </ul>
+        </div>
+
+        <div class="columns is-vcentered interpolation-panel" style="margin-top: 30px;">
+          <div class="column has-text-centered">
+            <img src="./static/images/distractor_10_all.png" alt="Slot merging analysis under varying distractors" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <p class="is-size-7" style="margin-top: 15px; color: #555;"><strong>Figure 5:</strong> Qualitative analysis showing slot merging failures under hard, medium, and easy distractor levels (K=10).</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/overall_filter_3.png" alt="Slot count ablation chart" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <p class="is-size-7" style="margin-top: 15px; color: #555;"><strong>Figure 6:</strong> The capacity trade-off: Impact of varying slot numbers (K) on In-Domain vs. Out-of-Domain success rates.</p>
+          </div>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 60px;">Real-World Scene Diversity</h3>
+        <div class="content has-text-justified">
+          <p>
+            To rigorously test our policies under real-world conditions, we evaluated the Franka arm across a highly diverse set of configurations. The gallery below demonstrates the variance in object starting positions.
+          </p>
+        </div>
+
+
+        <div class="columns is-multiline is-centered" style="margin-top: 20px;">
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/div_screw.gif" alt="Screwdriver Task Diversity" class="gallery-img">
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/div_plate.gif" alt="Plate Task Diversity" class="gallery-img">
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/div_bowl.gif" alt="Bowl Task Diversity" class="gallery-img">
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/div_can.gif" alt="Can Task Diversity" class="gallery-img">
+            </figure>
+          </div>
+        </div>
+        
+        <p class="is-size-7 has-text-centered" style="margin-top: 15px; color: #555;"><strong>Figure 7:</strong> Real-world inference scene diversity showcasing task executions under varying spatial configurations and novel distractors.</p>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="references">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">References</h2>
+        <div class="content has-text-justified">
+          <ol style="font-size: 0.95em;">
+            <li id="ref-locatello">F. Locatello, D. Weissenborn, T. Unterthiner, A. Mahendran, G. Heigold, J. Uszkoreit, A. Dosovitskiy, and T. Kipf. "Object-centric learning with slot attention," 2020.</li>
+            <li id="ref-oquab">M. Oquab, T. Darcet, T. Moutakanni, et al., "Dinov2: Learning robust visual features without supervision," 2024.</li>
+            <li id="ref-seitzer">M. Seitzer, M. Horn, A. Zadaianchuk, et al., "Bridging the gap to real-world object-centric learning," 2023.</li>
+            <li id="ref-yu">T. Yu, D. Quillen, Z. He, R. Julian, A. Narayan, et al., "Meta-world: A benchmark and evaluation for multi-task and meta reinforcement learning," 2021.</li>
+            <li id="ref-liu">B. Liu, Y. Zhu, C. Gao, Y. Feng, Q. Liu, Y. Zhu, and P. Stone, "Libero: Benchmarking knowledge transfer for lifelong robot learning," 2023.</li>
+            <li id="ref-shang">J. Shang, K. Schmeckpeper, B. B. May, M. V. Minniti, T. Kelestemur, D. Watkins, and L. Herlant, "Theia: Distilling diverse vision foundation models for robot learning," 2024.</li>
+            <li id="ref-bridge">Homer et al., "BridgeData V2: A Dataset for Robot Learning at Scale," 2023.</li>
+            <li id="ref-fractal">Brohan et al., "RT-1: Robotics Transformer for Real-World Control at Scale," 2022.</li>
+            <li id="ref-droid">Khansari et al., "DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset," 2024.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre style="border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);"><code>@article{chapin2026spotlighting,
+  title={Spotlighting Task-Relevant Features: Object-Centric Representations for Better Generalization in Robotic Manipulation},
+  author={Chapin, Alexandre and Machado, Bruno and Dellandrea, Emmanuel and Chen, Liming},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="static/pdfs/paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/spotlight-iros" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
